@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Name="SimpleRestClient"
+             x:Class="SimpleRestClient.MainPage"
+             xmlns:viewmodel="clr-namespace:SimpleRestClient.ViewModel"
+             x:DataType="viewmodel:MainViewModel"
+             BackgroundColor="{AppThemeBinding Light='#f1f3f9', Dark='#1d1d1d'}">
+
+    <ScrollView >
+        <VerticalStackLayout
+            Margin="20"
+            Spacing="10"
+            Padding="30,0"
+            VerticalOptions="Start">
+            <Label
+                Text="Execute a HTTP Request"
+                FontSize="18"
+                HorizontalOptions="{OnPlatform Android='CenterAndExpand', WinUI='StartAndExpand'}"
+                WidthRequest="{OnPlatform Android='350'}"/>
+            
+            <Frame BackgroundColor="{AppThemeBinding Dark='#404040'}"
+                   WidthRequest="{OnPlatform Android='350', iOS='350'}"
+                   Padding="10">
+                <Entry Text="{Binding RequestUri, Mode=TwoWay}"
+                       Placeholder="https://example.com/api/v1/home"
+                       FontFamily="Cascadia Mono"/>
+            </Frame>
+            <Frame BackgroundColor="{AppThemeBinding Dark='#404040'}"
+                   
+                   WidthRequest="{OnPlatform Android='350', iOS='350'}"
+                   HeightRequest="300"
+                   Padding="10">
+                <Editor Text="{Binding LabelText, Mode=TwoWay}"
+                       MaximumWidthRequest="{OnPlatform Android='350'}"
+                       HeightRequest="{OnPlatform WinUI='300'}"
+                       Placeholder="Your result will be shown here."
+                       FontFamily="Cascadia Mono"
+                        IsReadOnly="True"/>
+            </Frame>
+            <VerticalStackLayout HorizontalOptions="Center">
+                <Button
+                    Text="🚀 Execute request"
+                    MaximumWidthRequest="230"
+                    WidthRequest="{OnPlatform Android='350'}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Command="{Binding ExecuteRequestCommand}"
+                    Margin="2"/>
+                <Button
+                    Text="📋 Copy response to clipboard"
+                    MaximumWidthRequest="230"
+                    WidthRequest="{OnPlatform Android='350'}"
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    Command="{Binding CopyResponseToClipboardCommand}"/>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
