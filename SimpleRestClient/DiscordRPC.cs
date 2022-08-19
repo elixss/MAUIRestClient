@@ -1,5 +1,6 @@
 ﻿using DiscordRPC;
 using DiscordRPC.Logging;
+using Button = DiscordRPC.Button;
 
 namespace SimpleRestClient
 {
@@ -17,14 +18,6 @@ namespace SimpleRestClient
         {
             client = new DiscordRpcClient("1010215811270582402");
             client.Logger = new ConsoleLogger() { Level = LogLevel.Warning };
-            client.OnReady += (sender, msg) =>
-            {
-                Console.WriteLine("Connected to discord with user {0}", msg.User.Username);
-            };
-            client.OnPresenceUpdate += (sender, e) =>
-            {
-                Console.WriteLine("Presence has been updated! {0}", e.Presence);
-            };
             client.Initialize();
             client.SetPresence(new RichPresence()
             {
@@ -34,6 +27,10 @@ namespace SimpleRestClient
                 {
                     LargeImageKey = "restclient_large",
                     LargeImageText = "MAUIRestClient"
+                },
+                Buttons = new Button[]
+                {
+                    new Button() { Label = "View Repository", Url = "https://github.com/elixss/MAUIRestClient" }
                 }
             });
             Update();
