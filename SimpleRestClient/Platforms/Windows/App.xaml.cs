@@ -19,7 +19,7 @@ public partial class App : MauiWinUIApplication
 	{
 		this.InitializeComponent();
 		DiscordRPC.Initilize();
-    }
+    	}
 
 	protected override MauiApp CreateMauiApp() => MauiProgram.CreateMauiApp();
 }
